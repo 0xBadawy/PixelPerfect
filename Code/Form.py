@@ -7,7 +7,7 @@ app = customtkinter.CTk()
 
 
 app.title("my app")
-app.geometry("700x900")
+app.geometry("1200x800")
 
 # button = customtkinter.CTkButton(app, text="my button", command=button_callback)
 # button.grid(row=0, column=2, padx=0, pady=0)
