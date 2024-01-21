@@ -1,7 +1,0 @@
-customtkinter :
-https://customtkinter.tomschimansky.com/
-
-
-customtkinter Repo :
-https://github.com/tomschimansky/customtkinter
-
