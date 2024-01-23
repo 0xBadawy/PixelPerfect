@@ -2,6 +2,7 @@ import customtkinter
 import Main
 import time
 import os
+from PIL import Image, ImageTk
 
 # =================== window setup ===================
 customtkinter.set_appearance_mode("light") # "dark" or "light"
@@ -40,7 +41,6 @@ button2 = customtkinter.CTkButton(app, text="Open ", command=Create_image)
 button3 = customtkinter.CTkButton(app, text="TEXT ", command=TextInfo)
 textbox = customtkinter.CTkTextbox(app)
 textbox.insert("0.0", "new text to insert")  
-
 
 
 
