@@ -3,6 +3,7 @@ import Main
 import time
 import os
 from PIL import Image, ImageTk
+from tkinter import colorchooser
 
 # =================== window setup ===================
 customtkinter.set_appearance_mode("light") # "dark" or "light"
@@ -11,14 +12,22 @@ app.title("CTkSwitch Demo")
 #app.geometry("1600x800")
 app.geometry("600x400")
 # =================== varables ===================
+
 folder_path = ""
+font_color = ""
 
 # =================== functions ===================
 def Select_Folder():
     folderpath = customtkinter.filedialog.askdirectory()
     global folder_path
     folder_path = folderpath
-                
+    
+def choose_color():
+    rgb_color, hex_color = colorchooser.askcolor(title="Choose a color")
+    global font_color
+    font_color = hex_color
+    #print("Chosen color (RGB):", rgb_color ,"hex_color", hex_color)
+    
 def Create_image():  
     start_time = time.time()    
     print(folder_path)
