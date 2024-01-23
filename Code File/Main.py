@@ -1,6 +1,11 @@
 import os
 #import Functions
 import datetime
+from bidi.algorithm import get_display
+from arabic_reshaper import reshape
+
+
+
 from PIL import Image, ImageDraw, ImageFont
 
 #folder_path = "D:\Python\New folder\Test_images"
@@ -21,8 +26,10 @@ else:
     T_Day = "10"
     
 
-T_First_line ="First line of text"
+T_First_line ="السلام عليكم"
 T_Second_line = "Second line of text"
+bidi_text = get_display(T_First_line)
+T_First_line = reshape(bidi_text)
 
 texts = [T_Year+T_Month+T_Day, T_First_line, T_Second_line]
 text_positions = [(1530, 1220), (960, 1300), (950, 1400)]
@@ -49,7 +56,7 @@ def add_text_and_frame(folder_path):
 
         # ================ Add Texts on image ================
         d = ImageDraw.Draw(image)
-        font = ImageFont.truetype("Fonts/Cairo-Bold.ttf", 50)
+        font = ImageFont.truetype("Fonts/arial.ttf", 50)
         for text, pos, color in zip(texts, text_positions, text_colors):
             d.text(pos, text=text, font=font, fill=color)
     
@@ -61,4 +68,5 @@ def add_text_and_frame(folder_path):
             modified_folder_path = os.path.join(folder_path, "Modified_Images")
             os.makedirs(modified_folder_path, exist_ok=True)
             image.save(os.path.join(modified_folder_path, "modified_" + file))
+    return len(image_files)
             

@@ -1,6 +1,7 @@
 import customtkinter
 import Main
 import time
+import os
 
 # =================== window setup ===================
 customtkinter.set_appearance_mode("light") # "dark" or "light"
@@ -17,18 +18,20 @@ def Select_Folder():
     folderpath = customtkinter.filedialog.askdirectory()
     global folder_path
     folder_path = folderpath
-    
-def Select_Folder2():  
+        
+        
+def Create_image():  
     start_time = time.time()    
     print(folder_path)
     Main.add_text_and_frame(folder_path)    
     end_time = time.time()
     elapsed_time = end_time - start_time    
     print(f"Done (Time taken: {elapsed_time} seconds)")
+  
     
 # =================== widgets defenation ===================
 button = customtkinter.CTkButton(app, text="Open Folder", command=Select_Folder)
-button2 = customtkinter.CTkButton(app, text="Open ", command=Select_Folder2)
+button2 = customtkinter.CTkButton(app, text="Open ", command=Create_image)
 
 
 
