@@ -32,18 +32,13 @@ def Create_image():
 # =================== widgets defenation ===================
 button = customtkinter.CTkButton(app, text="Open Folder", command=Select_Folder)
 button2 = customtkinter.CTkButton(app, text="Open ", command=Create_image)
-button = customtkinter.CTkButton(app, text="Open Folder", command=Select_Folder)
-button2 = customtkinter.CTkButton(app, text="Open ", command=Create_image)
-
-
 
 
 
 # =================== widgets ===================
 button.grid(row=0, column=0, padx=20, pady=20)
 button2.grid(row=2, column=0, padx=30, pady=30)
-button.grid(row=0, column=0, padx=20, pady=20)
-button2.grid(row=2, column=0, padx=30, pady=30)
+
 
 
 
