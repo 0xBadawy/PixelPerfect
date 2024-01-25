@@ -15,6 +15,6 @@ root.title("Color Chooser")
 # Create a button to open the color chooser
 button = tk.Button(root, text="Choose Color", command=choose_color)
 button.pack(pady=20)
-
+    
 # Start the Tkinter event loop
 root.mainloop()
