@@ -65,7 +65,6 @@ textbox = customtkinter.CTkTextbox(app)
 textbox.insert("0.0", "new text to insert")  
 
 
-
 # =================== test ===================
 def checkbox_event():
     global save_in_same_folder
