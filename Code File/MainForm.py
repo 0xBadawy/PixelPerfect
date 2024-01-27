@@ -1,14 +1,10 @@
-import customtkinter
+import os
 import Main
 import time
-import os
-from PIL import Image, ImageTk
-from tkinter import colorchooser
+import customtkinter
+from PIL import Image, ImageDraw, ImageFont,ImageTk
+from tkinter import Tk, Label, Button, filedialog,colorchooser
 
-import os
-from tkinter import Tk, Label, Button, filedialog
-from PIL import Image, ImageDraw, ImageFont
-from PIL import ImageTk
 
 # =================== window setup ===================
 customtkinter.set_appearance_mode("dark") # "dark" or "light"
