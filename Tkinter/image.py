@@ -15,22 +15,16 @@ def fill_image(event):
     canvas_ratio = event.width / event.height
     image_ratio=image_original_R.size[0]/image_original_R.size[1]
 
-    if canvas_ratio > image_ratio: # canvas is wider than the image
+    if canvas_ratio > image_ratio: 
         width = int(event.width)
         height = int(width / image_ratio)
     else:
-        # height = int(event.height)
-        # width = int(height * image_ratio)
         height = int(event.height)
         width = int(height * image_ratio)
 
     resized_image = image_original_R.resize((width, height))
     resized_tk = ImageTk.PhotoImage(resized_image)
-    canvas.create_image(
-    int(event.width / 2),
-    int(event.height / 2),
-    anchor = 'center',
-    image = resized_tk)
+    canvas.create_image(int(event.width / 2),int(event.height / 2),anchor = 'center',image = resized_tk)
 
 
 
@@ -40,11 +34,10 @@ def show_full_image(event):
     canvas_ratio = event.width / event.height
     image_ratio=image_original_R.size[0]/image_original_R.size[1]
 
-    # get coordinates
     if canvas_ratio > image_ratio: # canvas is wider than the image
         height = int(event.height)
         width = int(height * image_ratio)
-    else: # canvas is narrower than the image
+    else: 
         width = int(event.width)
         height = int(event.height)
 
