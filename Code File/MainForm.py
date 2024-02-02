@@ -1,4 +1,5 @@
 import os
+
 import time
 import Main
 import tkinter as tk
@@ -8,6 +9,13 @@ from PIL import Image, ImageTk
 from tkinter import colorchooser
 from PIL import Image, ImageDraw, ImageFont
 
+
+=======
+import Main
+import time
+import customtkinter
+from PIL import Image, ImageDraw, ImageFont,ImageTk
+from tkinter import Tk, Label, Button, filedialog,colorchooser
 
 
 
@@ -82,6 +90,8 @@ RightBar.grid(row=1,column=14,rowspan=14,columnspan=2,stick='nsew',pady=5,padx=5
 
 MiddleBar=ctk.CTkFrame(app,fg_color="#FCCCCE")
 MiddleBar.grid(row=1,column=2,rowspan=14,columnspan=12,stick='nsew',pady=5,padx=5)
+
+
 
 # =================== main ===================
 
