@@ -1,4 +1,16 @@
 import os
+
+import time
+import Main
+import tkinter as tk
+from tkinter import ttk
+import customtkinter as ctk
+from PIL import Image, ImageTk
+from tkinter import colorchooser
+from PIL import Image, ImageDraw, ImageFont
+
+
+=======
 import Main
 import time
 import customtkinter
@@ -6,12 +18,13 @@ from PIL import Image, ImageDraw, ImageFont,ImageTk
 from tkinter import Tk, Label, Button, filedialog,colorchooser
 
 
+
 # =================== window setup ===================
-customtkinter.set_appearance_mode("dark") # "dark" or "light"
-app = customtkinter.CTk()
+ctk.set_appearance_mode("dark") # "dark" or "light"
+app = ctk.CTk()
 app.title("Demo")
-#app.geometry("1600x800")
-app.geometry("600x600")
+app.geometry("1600x900")
+#app.geometry("600x600")
 # =================== varables ===================
 
 folder_path = ""
@@ -22,7 +35,7 @@ save_in_same_folder = True
 
 # =================== functions ===================
 def Select_Folder():
-    folderpath = customtkinter.filedialog.askdirectory()
+    folderpath = ctk.filedialog.askdirectory()
     global folder_path
     folder_path = folderpath
     
@@ -33,8 +46,8 @@ def choose_color():
     #print("Chosen color (RGB):", rgb_color ,"hex_color", hex_color)
 
 def openImage(path):        
-    Io = customtkinter.CTkImage(light_image=Image.open(path),dark_image=Image.open(path),size=(320, 300))
-    i = customtkinter.CTkLabel(app, text="",image=Io)
+    Io = ctk.CTkImage(light_image=Image.open(path),dark_image=Image.open(path),size=(320, 300))
+    i = ctk.CTkLabel(app, text="",image=Io)
     i.grid(row=5, column=5, padx=300, pady=30)
 
 def Create_image():  
@@ -54,69 +67,29 @@ def TextInfo():
    
    
 # =================== widgets defenation ===================
-#button = customtkinter.CTkButton(frame, text="Open Folder", command=Select_Folder)
-button2 = customtkinter.CTkButton(app, text="Open ", command=Create_image)
-button3 = customtkinter.CTkButton(app, text="TEXT ", command=TextInfo)
-textbox = customtkinter.CTkTextbox(app)
-textbox.insert("0.0", "new text to insert")  
 
-
-
-
-# =================== test ===================
-def checkbox_event():
-    global save_in_same_folder
-    if save_in_same_folder:
-        save_in_same_folder = False
-    else:
-        save_in_same_folder = True
-
-check_var = customtkinter.StringVar(value="on")
-checkbox = customtkinter.CTkCheckBox(app, text="CTkCheckBox", command=checkbox_event,variable=check_var, onvalue="on", offvalue="off")
+# ==================== Grid ================================
+app.columnconfigure((0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15),weight=1,uniform='a')
+app.rowconfigure((0,1,2,3,4,5,6,7,8,9,10,11,12,13,14),weight=1,uniform='a')
 
 
 
 
 
 
-
-# e1 =customtkinter.CTkLabel(app, image=converted_image,width=320, height=300)
-
-#openImage("Test_images/w.jpg")
-
-# =================== widgets ===================
-# button.grid(row=3, column=4, padx=20, pady=20)
-# button2.grid(row=2, column=0, padx=30, pady=30)
-# button3.grid(row=2, column=1, padx=30, pady=30)
-# textbox.grid(row=5, column=0, padx=30, pady=30)
+# =================== main Frames ===================
+TopBar=ctk.CTkFrame(app,fg_color="#fff")
+TopBar.grid(row=0,column=0,columnspan=16,stick='nsew',pady=5,padx=5)
 
 
-frame = customtkinter.CTkFrame(master=app, fg_color="gray40", bg_color="gray40", border_color="gray40", border_width=0)
-frame2 = customtkinter.CTkFrame(master=app, fg_color="red", bg_color="red", border_color="red", border_width=0)
+LeftBar=ctk.CTkFrame(app,fg_color="#FCE")
+LeftBar.grid(row=1,column=0,rowspan=14,columnspan=2,stick='nsew',pady=5,padx=5)
 
+RightBar=ctk.CTkFrame(app,fg_color="#FCE")
+RightBar.grid(row=1,column=14,rowspan=14,columnspan=2,stick='nsew',pady=5,padx=5)
 
-# #app.grid_columnconfigure(0, weight=1 )
-# app.grid_rowconfigure(0, weight=1 )
-# #frame.grid(row=0, column=0, padx=0, pady=0, sticky="ew")
-# frame2.grid(row=0, column=0, padx=0, pady=0, sticky="ew")
-
-
-
-
-frame.pack(fill="y", expand=True, side="bottom")
-
-
-
-
-# button = customtkinter.CTkButton(app, text="Open Folder", command=Select_Folder)
-# button21 = customtkinter.CTkButton(app, text="Open Folder", command=Select_Folder)
-
-
-# button.grid(row=0, column=0, padx=20, pady=20, sticky="ew")
-# button21.grid(row=0, column=1, padx=20, pady=20, sticky="ew")
-
-
-
+MiddleBar=ctk.CTkFrame(app,fg_color="#FCCCCE")
+MiddleBar.grid(row=1,column=2,rowspan=14,columnspan=12,stick='nsew',pady=5,padx=5)
 
 
 
@@ -124,7 +97,6 @@ frame.pack(fill="y", expand=True, side="bottom")
 
 
 app.mainloop()
-
 
 
 
