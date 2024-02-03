@@ -27,10 +27,11 @@ folder_path = ""
 first_image=""
 font_color = ""
 save_in_same_folder = True
-image_original_R=f"Test_images\\TY.jpg"
+image_original_R8=f"Test_images\\TY.jpg"
 image_original_R=f"Test_images\Screenshot_1.jpg"
 logo_Path='Test_images\\SSR.png'
-image_number_in_folder=tk.IntVar()
+image_number_in_folder=0
+
 
 
 # =================== images ===================
@@ -99,7 +100,7 @@ def count_images_in_folder(folder_path):
             image_count += 1
     image_number_in_folder= image_count
     print(image_number_in_folder)
-    #return image_count
+    NumberOfImage_lable.config(text=str(image_count))
 
 
 # =================== widgets defenation ===================
@@ -157,10 +158,28 @@ if incW>1 or incH>1:
         Image_height=770        
 Image_=Image__.resize((int(Image_width),int(Image_height)))
 ImageTK=ImageTk.PhotoImage(Image_)
-image_label = ttk.Label(MiddleBar_Frame, image=ImageTK)
-image_label.grid(row=0, column=0, sticky='nsew',padx=(1154-Image_width)/2,pady=(770-Image_height)/2)
+image_label = ttk.Label(MiddleBar_Frame, image=ImageTK,anchor='center')
+image_label.pack(fill='both', expand=True,anchor='center')
 
 
+
+def update_image(image_path):
+    global image_label, ImageTK
+    Image__ = Image.open(image_path)
+    Image_width = Image__.width
+    Image_height = Image__.height
+    incW = Image_width / 1154
+    incH = Image_height / 770
+    if incW > 1 or incH > 1:
+        if incW > incH:
+            Image_height = Image_height / incW
+            Image_width = 1154
+        else:
+            Image_width = Image_width / incH
+            Image_height = 770
+    Image_ = Image__.resize((int(Image_width), int(Image_height)))
+    ImageTK = ImageTk.PhotoImage(Image_)
+    image_label.configure(image=ImageTK)
 
 # =================== ButtonBar ===================
 it=tk.Variable()
@@ -173,7 +192,7 @@ ButtonBar_Frame.rowconfigure(0,weight=1,uniform='a')
 SelectFolder_Button = ctk.CTkButton(ButtonBar_Frame, text="Select Folder", command=Select_Folder,font=("cairo", 20))
 SelectFolder_Button.grid(row=0, column=2, padx=5, pady=5)
 
-NumberOfImage_lable = ttk.Label(ButtonBar_Frame,text="dd",textvariable= str(image_number_in_folder))
+NumberOfImage_lable = ttk.Label(ButtonBar_Frame,text="dd")
 NumberOfImage_lable.grid(row=0,column=0,sticky='nsew')
 
 
@@ -217,10 +236,11 @@ def P():
 #                  background="#111",highlightthickness=0,relief='flat',bd=0)
 # canvas_Logo.pack(fill='both',expand=True)
 
+def er():
+    update_image(first_image)
 
-SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",font=("cairo", 20))
+SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",command=er,font=("cairo", 20))
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
-
 
 
 # Image_tk_RLogo = ImageTk.PhotoImage(image_original_R)
