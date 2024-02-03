@@ -192,6 +192,8 @@ NumberOfImage_lable.grid(row=0,column=0,sticky='nsew')
 
 
 
+
+
 # =================== RightBar ===================
 RightBar_Frame.columnconfigure(0,weight=1,uniform='a')
 RightBar_Frame.rowconfigure((0,1,2,3,4),weight=1,uniform='a')
