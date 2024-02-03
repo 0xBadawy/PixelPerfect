@@ -213,25 +213,11 @@ def P():
     print("Logo_Frame width",Logo_Frame.winfo_width(),"Logo_Frame height",Logo_Frame.winfo_height())
     
 
-# Image_Logo = ImageTk.PhotoImage(logo_Path)
-# canvas_Logo=tk.Canvas(Logo_Frame,
-#                  width=min(1057,logo_Path.size[0]),
-#                  height=min(770,logo_Path.size[1]),
-#                  background="#111",highlightthickness=0,relief='flat',bd=0)
-# canvas_Logo.pack(fill='both',expand=True)
-
 def er():
     update_image(first_image)
 
 SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",command=er,font=("cairo", 20))
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
-
-
-# Image_tk_RLogo = ImageTk.PhotoImage(image_original_R)
-# Logo_Canvas=tk.Canvas(Logo_Frame,background="#111",highlightthickness=0,relief='flat',bd=0)
-
-# Logo_Canvas.pack(fill='both',expand=True)
-# Logo_Canvas.bind('<Configure>',lambda event: show_full_image(event,logo_Path,Logo_Canvas))
 
 
 
