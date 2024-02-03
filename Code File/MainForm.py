@@ -139,9 +139,6 @@ def Place_image():
 #Place_image()
 
 
-# image_label = ttk.Label(MiddleBar_Frame,text="dd")
-# image_label.grid(row=0, column=0, sticky='nsew')
-
 
 
 Image__=Image.open(image_original_R)
