@@ -222,6 +222,7 @@ SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",font=("cair
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
 
 
+
 # Image_tk_RLogo = ImageTk.PhotoImage(image_original_R)
 # Logo_Canvas=tk.Canvas(Logo_Frame,background="#111",highlightthickness=0,relief='flat',bd=0)
 
