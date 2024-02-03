@@ -19,7 +19,7 @@ ctk.set_appearance_mode("dark") # "dark" or "light"
 app = ctk.CTk()
 app.title("Demo")
 app.geometry("1600x900")
-app.resizable(False, False)
+
 #app.geometry("600x600")
 # =================== varables ===================
 
@@ -27,9 +27,8 @@ folder_path = ""
 first_image=""
 font_color = ""
 save_in_same_folder = True
-image_original_R=f"Test_images\\TY.jpg"
-image_original_R=f"Test_images\Screenshot_1.jpg"
-logo_Path='Test_images\\SSR.png'
+image_original_R=""
+logo_Path="Test_images\\Frame.png"
 image_number_in_folder=tk.IntVar()
 
 
@@ -43,6 +42,48 @@ def get_first_image_path():
             return      
     return None
 
+def fill_image(event):
+    global resized_tk
+    canvas_ratio = event.width / event.height
+    image_ratio=image_original_R.size[0]/image_original_R.size[1]
+    if canvas_ratio > image_ratio: 
+        width = int(event.width)
+        height = int(width / image_ratio)
+    else:
+        height = int(event.height)
+        width = int(height * image_ratio)
+    resized_image = image_original_R.resize((width, height))
+    resized_tk = ImageTk.PhotoImage(resized_image)
+    canvas.create_image(int(event.width / 2),int(event.height / 2),anchor = 'center',image = resized_tk)
+
+def show_full_image(image_original_R,canvas):
+    Place_image()
+    global resized_tk
+    
+    width = canvas.winfo_width()
+    height = canvas.winfo_height()
+    
+    canvas_ratio = width / height
+    
+    image_ratio = image_original_R.size[0] / image_original_R.size[1]
+
+    if canvas_ratio > image_ratio:  # Canvas is wider than the image
+        T_height = int(height)
+        T_width = int(T_height * image_ratio)
+    else:
+        T_width = int(width)
+        T_height = int(T_width / image_ratio)
+
+    resized_image = image_original_R.resize((T_width, T_height))
+    resized_tk = ImageTk.PhotoImage(resized_image)
+
+    canvas.create_image(
+        int(width / 2),
+        int(height / 2),
+        anchor='center',
+        image=resized_tk
+    )
+    
 # =================== functions ===================
 def Select_Folder():
     folderpath = ctk.filedialog.askdirectory()
@@ -50,8 +91,10 @@ def Select_Folder():
     folder_path = folderpath
     get_first_image_path()
     count_images_in_folder(folderpath)
-    image_label.config(MiddleBar_Frame, image=ImageTK)
-       
+    Disply_Edited_Image()
+    Disply_Edited_Image()
+    
+    
     
 def add_bottom_padding(image_path, padding_height, padding_color):
     original_image = Image.open(image_path)
@@ -134,34 +177,20 @@ ButtonBar_Frame.grid(row=14,column=2,rowspan=1,columnspan=12,stick='nsew',pady=5
 def Place_image():
     global first_image,image_original_R        
     if first_image == "":image_original_R = Image.open('Test_images\\SSR.png')
-    else:image_original_R = Image.open(first_image)                 
-#Place_image()
-
-
-# image_label = ttk.Label(MiddleBar_Frame,text="dd")
-# image_label.grid(row=0, column=0, sticky='nsew')
+    else:image_original_R = Image.open(first_image)   
+              
+Place_image()
 
 
 
-Image__=Image.open(image_original_R)
-Image_width = Image__.width
-Image_height = Image__.height
-incW=Image_width/1154
-incH=Image_height/770
-if incW>1 or incH>1:
-    if incW>incH:
-        Image_height=Image_height/incW
-        Image_width=1154
-    else:
-        Image_width=Image_width/incH
-        Image_height=770        
-Image_=Image__.resize((int(Image_width),int(Image_height)))
-ImageTK=ImageTk.PhotoImage(Image_)
-image_label = ttk.Label(MiddleBar_Frame, image=ImageTK)
-image_label.grid(row=0, column=0, sticky='nsew',padx=(1154-Image_width)/2,pady=(770-Image_height)/2)
+Image_tk_R = ImageTk.PhotoImage(image_original_R)
+canvas=tk.Canvas(MiddleBar_Frame,background="#111",highlightthickness=0,relief='flat',bd=0)
+canvas.pack(fill='both',expand=True)
+canvas.bind('<Configure>',lambda event: show_full_image(image_original_R,canvas))
 
-
-
+def Disply_Edited_Image():
+    show_full_image(image_original_R,canvas)
+    
 # =================== ButtonBar ===================
 it=tk.Variable()
 
@@ -176,9 +205,6 @@ SelectFolder_Button.grid(row=0, column=2, padx=5, pady=5)
 NumberOfImage_lable = ttk.Label(ButtonBar_Frame,text="dd",textvariable= str(image_number_in_folder))
 NumberOfImage_lable.grid(row=0,column=0,sticky='nsew')
 
-
-
-
 # =================== RightBar ===================
 RightBar_Frame.columnconfigure(0,weight=1,uniform='a')
 RightBar_Frame.rowconfigure((0,1,2,3,4),weight=1,uniform='a')
@@ -187,38 +213,15 @@ RightBar_Frame.rowconfigure((0,1,2,3,4),weight=1,uniform='a')
 Logo_Frame=ctk.CTkFrame(RightBar_Frame,fg_color="#FC222E")
 Logo_Frame.grid(row=0, column=0,stick='nsew',pady=5,padx=5)
 
-def select_logo():
-    global logo_Path
-    logo_path_ = ctk.filedialog.askopenfilename(filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.gif")])
-    if logo_path_:
-        logo_Path = logo_path_
-        # Display the selected logo image in the Logo_Canvas or perform any other operations with the logo path
-        
-def P():
-    print("Logo_Frame width",Logo_Frame.winfo_width(),"Logo_Frame height",Logo_Frame.winfo_height())
+def erre():
+    global image_original_R
+    image_path = image_original_R
+    padding_height = 300
+    padding_color = (255, 255, 255)      
+    image_original_R = Functions.add_bottom_padding_a(image_path, padding_height, padding_color)
     
-
-# Image_Logo = ImageTk.PhotoImage(Image.open(logo_Path))
-# canvas_Logo = tk.Canvas(Logo_Frame,
-#                         width=min(1057, Image_Logo.width()),
-#                         height=min(770, Image_Logo.height()),
-#                         background="#111",
-#                         highlightthickness=0,
-#                         relief='flat',
-#                         bd=0)
-# canvas_Logo.pack(fill='both', expand=True)
-# canvas_Logo.create_image(0, 0, anchor="nw", image=Image_Logo)
     
-
-# Image_Logo = ImageTk.PhotoImage(logo_Path)
-# canvas_Logo=tk.Canvas(Logo_Frame,
-#                  width=min(1057,logo_Path.size[0]),
-#                  height=min(770,logo_Path.size[1]),
-#                  background="#111",highlightthickness=0,relief='flat',bd=0)
-# canvas_Logo.pack(fill='both',expand=True)
-
-
-SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",font=("cairo", 20))
+SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo", command=erre,font=("cairo", 20))
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
 
 
@@ -227,6 +230,7 @@ SelectLogo_Button.grid(row=1, column=0,sticky='n')
 
 # Logo_Canvas.pack(fill='both',expand=True)
 # Logo_Canvas.bind('<Configure>',lambda event: show_full_image(event,logo_Path,Logo_Canvas))
+
 
 
 
