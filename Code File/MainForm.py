@@ -27,6 +27,8 @@ font_color = ""
 save_in_same_folder = True
 image_original_R=""
 logo_Path="Test_images\Frame.png"
+image_number_in_folder=tk.IntVar()
+
 
     
 
@@ -194,3 +196,17 @@ app.mainloop()
 
 # Disply image seqace =>   Select_Folder() -> get_first_image_path() -> Place_image()
 
+
+
+'''
+
+raido_var=tk.StringVar()
+radio1 = ttk.Radiobutton(
+    app,
+    text='radio 1',
+    value='R 1',
+    variable=raido_var,
+    command=lambda:print(" - ")       
+) 
+
+'''
