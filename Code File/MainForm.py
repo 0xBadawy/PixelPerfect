@@ -181,6 +181,7 @@ def update_image(image_path):
     ImageTK = ImageTk.PhotoImage(Image_)
     image_label.configure(image=ImageTK)
 
+
 # =================== ButtonBar ===================
 it=tk.Variable()
 
