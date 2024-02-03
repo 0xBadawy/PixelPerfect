@@ -213,14 +213,6 @@ def P():
     print("Logo_Frame width",Logo_Frame.winfo_width(),"Logo_Frame height",Logo_Frame.winfo_height())
     
 
-# Image_Logo = ImageTk.PhotoImage(Image.open(logo_Path))
-# canvas_Logo = tk.Canvas(Logo_Frame,
-#                         width=min(1057, Image_Logo.width()),
-#                         height=min(770, Image_Logo.height()),
-#                         background="#111",
-#                         highlightthickness=0,
-#                         relief='flat',
-#                         bd=0)
 # canvas_Logo.pack(fill='both', expand=True)
 # canvas_Logo.create_image(0, 0, anchor="nw", image=Image_Logo)
     
