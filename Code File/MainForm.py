@@ -25,6 +25,7 @@ app.resizable(False, False)
 folder_path = ""
 first_image=""
 font_color = ""
+ImageArray = []
 save_in_same_folder = True
 image_original_R8=f"Test_images\\TY.jpg"
 image_original_R=f"Test_images\Screenshot_1.jpg"
@@ -43,6 +44,19 @@ def get_first_image_path():
             return      
     return None
 
+def get_all_images_in_folder(folder_path):
+    global ImageArray
+    image_paths = []
+    for file_name in os.listdir(folder_path):
+        if file_name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+            image_paths.append(os.path.join(folder_path, file_name))
+            print(image_paths)
+    
+    ImageArray = image_paths
+
+
+
+
 # =================== functions ===================
 def Select_Folder():
     folderpath = ctk.filedialog.askdirectory()
@@ -50,7 +64,8 @@ def Select_Folder():
     folder_path = folderpath
     get_first_image_path()
     count_images_in_folder(folderpath)
-    image_label.config(MiddleBar_Frame, image=ImageTK)
+    #image_label.config(MiddleBar_Frame, image=ImageTK)
+    get_all_images_in_folder(folderpath)
        
     
 def add_bottom_padding(image_path, padding_height, padding_color):
@@ -218,6 +233,30 @@ def er():
 
 SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",command=er,font=("cairo", 20))
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
+
+j=0
+def show_full_images():
+    global j
+    print("array length",len(ImageArray),'j',j) 
+    j+=1
+    if j == len(ImageArray):
+        j = 0
+    update_image(ImageArray[j])
+    
+    
+def printArray():
+    print(ImageArray)
+    
+
+
+
+
+
+nextButton = ctk.CTkButton(RightBar_Frame, text="Next",command=show_full_images,font=("cairo", 20))
+nextButton.grid(row=2, column=0,sticky='n')
+
+previousButton = ctk.CTkButton(RightBar_Frame, text="Previous",command=printArray,font=("cairo", 20))
+previousButton.grid(row=3, column=0,sticky='n')
 
 
 
