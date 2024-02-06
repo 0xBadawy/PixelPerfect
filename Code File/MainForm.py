@@ -231,6 +231,7 @@ def P():
 def er():
     update_image(first_image)
 
+
 SelectLogo_Button = ctk.CTkButton(RightBar_Frame, text="Select Logo",command=er,font=("cairo", 20))
 SelectLogo_Button.grid(row=1, column=0,sticky='n')
 
