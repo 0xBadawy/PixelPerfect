@@ -194,6 +194,7 @@ def update_image(image_path):
 
 
 # =================== ButtonBar ===================
+
 #----------------- ButtonBar Grid -----------------
 ButtonBar_Frame.columnconfigure((0,1,2,3,4),weight=1,uniform='a')
 ButtonBar_Frame.rowconfigure(0,weight=1,uniform='a')
@@ -222,7 +223,7 @@ def select_logo():
     logo_path_ = ctk.filedialog.askopenfilename(filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.gif")])
     if logo_path_:
         logo_Path = logo_path_
-        # Display the selected logo image in the Logo_Canvas or perform any other operations with the logo path
+
         
 def P():
     print("Logo_Frame width",Logo_Frame.winfo_width(),"Logo_Frame height",Logo_Frame.winfo_height())
