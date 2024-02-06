@@ -252,6 +252,7 @@ def printArray():
 
 
 
+
 nextButton = ctk.CTkButton(RightBar_Frame, text="Next",command=show_full_images,font=("cairo", 20))
 nextButton.grid(row=2, column=0,sticky='n')
 
