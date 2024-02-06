@@ -193,6 +193,7 @@ def update_image(image_path):
     image_label.configure(image=ImageTK)
 
 
+
 # =================== ButtonBar ===================
 
 #----------------- ButtonBar Grid -----------------
