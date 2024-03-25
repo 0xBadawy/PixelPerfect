@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 
-
+ 
 # =================== window setup ===================
 ctk.set_appearance_mode("dark") # "dark" or "light"
 app = ctk.CTk()
